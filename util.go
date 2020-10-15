@@ -18,10 +18,10 @@ const (
 
 // WalletVersion sets the semantic version number of the build
 // if using the standard vendor directory build process for factom-walletd in the factom-walletd repo is
-// $ go install -ldflags "-X github.com/FactomProject/factom/wallet.WalletVersion=`cat ./vendor/github.com/FactomProject/factom/wallet/VERSION`" -v
+// $ go install -ldflags "-X github.com/FactomProject/wallet.WalletVersion=`cat ./vendor/github.com/FactomProject/wallet/VERSION`" -v
 
 //if doing development and modifying the factom repo, in factom-walletd run
-// $ go install -ldflags "-X github.com/FactomProject/factom/wallet.WalletVersion=`cat $GOPATH/src/github.com/FactomProject/factom/wallet/VERSION`" -v
+// $ go install -ldflags "-X github.com/FactomProject/wallet.WalletVersion=`cat $GOPATH/src/github.com/FactomProject/wallet/VERSION`" -v
 
 // It also seems to need to have the previous binary deleted if recompiling to have this message show up if no code has changed.
 

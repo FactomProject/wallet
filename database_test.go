@@ -9,12 +9,12 @@ import (
 	"testing"
 
 	"github.com/FactomProject/factom"
-	. "github.com/FactomProject/factom/wallet"
+	"github.com/FactomProject/wallet"
 )
 
 func TestNewWallet(t *testing.T) {
 	// create a new database
-	w1, err := NewMapDBWallet()
+	w1, err := wallet.NewMapDBWallet()
 	if err != nil {
 		t.Error(err)
 	}
@@ -37,14 +37,14 @@ func TestOpenWallet(t *testing.T) {
 	dbpath := os.TempDir() + "/test_wallet-01"
 
 	// create a new database
-	w1, err := NewOrOpenLevelDBWallet(dbpath)
+	w1, err := wallet.NewOrOpenLevelDBWallet(dbpath)
 	if err != nil {
 		t.Error(err)
 	}
 	w1.Close()
 
 	// make sure we can open the db
-	w2, err := NewOrOpenLevelDBWallet(dbpath)
+	w2, err := wallet.NewOrOpenLevelDBWallet(dbpath)
 	if err != nil {
 		t.Error(err)
 	}
@@ -69,7 +69,7 @@ func TestPutECAddress(t *testing.T) {
 	zSec := "Es2Rf7iM6PdsqfYCo3D1tnAR65SkLENyWJG1deUzpRMQmbh9F3eG"
 
 	// create a new database
-	w, err := NewMapDBWallet()
+	w, err := wallet.NewMapDBWallet()
 	if err != nil {
 		t.Error(err)
 	}
@@ -98,7 +98,7 @@ func TestPutFCTAddress(t *testing.T) {
 	zSec := "Fs1KWJrpLdfucvmYwN2nWrwepLn8ercpMbzXshd1g8zyhKXLVLWj"
 
 	// create a new database
-	w, err := NewMapDBWallet()
+	w, err := wallet.NewMapDBWallet()
 	if err != nil {
 		t.Error(err)
 	}
@@ -125,7 +125,7 @@ func TestPutFCTAddress(t *testing.T) {
 
 func TestGenerateECAddress(t *testing.T) {
 	// create a new database
-	w, err := NewMapDBWallet()
+	w, err := wallet.NewMapDBWallet()
 	if err != nil {
 		t.Error(err)
 	}
@@ -149,7 +149,7 @@ func TestGenerateECAddress(t *testing.T) {
 
 func TestGenerateFCTAddress(t *testing.T) {
 	// create a new database
-	w, err := NewMapDBWallet()
+	w, err := wallet.NewMapDBWallet()
 	if err != nil {
 		t.Error(err)
 	}
@@ -179,7 +179,7 @@ func TestGetAllAddresses(t *testing.T) {
 	correctLen := 2
 
 	// create a new database
-	w, err := NewMapDBWallet()
+	w, err := wallet.NewMapDBWallet()
 	if err != nil {
 		t.Error(err)
 	}
@@ -251,7 +251,7 @@ func TestPutIdentityKey(t *testing.T) {
 	sec := "idsec2J3nNoqdiyboCBKDGauqN9Jb33dyFSqaJKZqTs6i5FmztsTn5f"
 
 	// create a new database
-	w, err := NewMapDBWallet()
+	w, err := wallet.NewMapDBWallet()
 	if err != nil {
 		t.Error(err)
 	}
@@ -278,7 +278,7 @@ func TestPutIdentityKey(t *testing.T) {
 
 func TestGenerateIdentityKey(t *testing.T) {
 	// create a new database
-	w, err := NewMapDBWallet()
+	w, err := wallet.NewMapDBWallet()
 	if err != nil {
 		t.Error(err)
 	}
@@ -307,7 +307,7 @@ func TestGetAllIdentityKeys(t *testing.T) {
 	correctLen := 2
 
 	// create a new database
-	w, err := NewMapDBWallet()
+	w, err := wallet.NewMapDBWallet()
 	if err != nil {
 		t.Error(err)
 	}

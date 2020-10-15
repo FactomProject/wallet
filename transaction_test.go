@@ -8,13 +8,13 @@ import (
 	"testing"
 
 	"github.com/FactomProject/factom"
-	. "github.com/FactomProject/factom/wallet"
 	"github.com/FactomProject/factomd/common/primitives"
+	"github.com/FactomProject/wallet"
 )
 
 func TestNewTransaction(t *testing.T) {
 	// create a new database
-	w1, err := NewMapDBWallet()
+	w1, err := wallet.NewMapDBWallet()
 	if err != nil {
 		t.Error(err)
 	}
@@ -49,7 +49,7 @@ func TestAddInput(t *testing.T) {
 	zSec := "Fs1KWJrpLdfucvmYwN2nWrwepLn8ercpMbzXshd1g8zyhKXLVLWj"
 
 	// create a new database
-	w1, err := NewMapDBWallet()
+	w1, err := wallet.NewMapDBWallet()
 	if err != nil {
 		t.Error(err)
 	}
@@ -95,7 +95,7 @@ func TestComposeTrasnaction(t *testing.T) {
 	e1Sec := "Es2Rf7iM6PdsqfYCo3D1tnAR65SkLENyWJG1deUzpRMQmbh9F3eG"
 
 	// create a new database
-	w1, err := NewMapDBWallet()
+	w1, err := wallet.NewMapDBWallet()
 	if err != nil {
 		t.Error(err)
 	}
@@ -178,7 +178,7 @@ func TestImportComposedTransaction(t *testing.T) {
 		"000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
 
 	_ = transSig
-	w1, err := NewMapDBWallet()
+	w1, err := wallet.NewMapDBWallet()
 	if err != nil {
 		t.Error(err)
 	}

@@ -7,13 +7,13 @@ package wallet_test
 import (
 	"testing"
 
-	. "github.com/FactomProject/factom/wallet"
 	"github.com/FactomProject/factomd/common/interfaces"
 	"github.com/FactomProject/factomd/testHelper"
+	"github.com/FactomProject/wallet"
 )
 
 func TestTXDatabaseOverlay(t *testing.T) {
-	db1 := NewTXMapDB()
+	db1 := wallet.NewTXMapDB()
 
 	fblock := fblockHead()
 	if err := db1.InsertFBlockHead(fblock); err != nil {

@@ -7,12 +7,11 @@ package wallet_test
 import (
 	"testing"
 
-	//"github.com/FactomProject/factom"
-	. "github.com/FactomProject/factom/wallet"
+	"github.com/FactomProject/wallet"
 )
 
 func TestImportWithSpaces(t *testing.T) {
-	w, err := ImportWalletFromMnemonic("yellow  yellow yellow yellow yellow yellow yellow yellow yellow yellow yellow yellow", "")
+	w, err := wallet.ImportWalletFromMnemonic("yellow  yellow yellow yellow yellow yellow yellow yellow yellow yellow yellow yellow", "")
 	if err != nil {
 		t.Error(err)
 		t.FailNow()

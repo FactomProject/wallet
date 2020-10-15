@@ -24,11 +24,11 @@ import (
 
 	"github.com/FactomProject/btcutil/certs"
 	"github.com/FactomProject/factom"
-	"github.com/FactomProject/factom/wallet"
 	"github.com/FactomProject/factomd/common/factoid"
 	"github.com/FactomProject/factomd/common/interfaces"
 	"github.com/FactomProject/factomd/common/primitives"
 	"github.com/FactomProject/factomd/database/securedb"
+	"github.com/FactomProject/wallet"
 	"github.com/FactomProject/web"
 )
 

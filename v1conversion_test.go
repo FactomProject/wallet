@@ -8,14 +8,14 @@ import (
 	"os"
 	"testing"
 
-	. "github.com/FactomProject/factom/wallet"
+	"github.com/FactomProject/wallet"
 )
 
 func TestImportV1Wallet(t *testing.T) {
 	v1path := os.TempDir() + "/factoid_wallet_bolt.db"
 	v2path := os.TempDir() + "/test_wallet-01"
 
-	w, err := ImportV1Wallet(v1path, v2path)
+	w, err := wallet.ImportV1Wallet(v1path, v2path)
 	if err != nil {
 		t.Error(err)
 	}

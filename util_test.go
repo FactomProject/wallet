@@ -5,15 +5,16 @@
 package wallet_test
 
 import (
-	. "github.com/FactomProject/factom/wallet"
 	"testing"
+
+	"github.com/FactomProject/wallet"
 )
 
 func TestSeedString(t *testing.T) {
 	zSeedStr := "sdLGjhUDxGpiBEPRhTwysRYmxNQD6V48Aa84oVzfHvy6suim6qB6m3MCp8aHu1k1CNVLJdB8N9HtGR4NZTtFfp3mj591eA3"
 
 	seed := make([]byte, 64)
-	if SeedString(seed) != zSeedStr {
+	if wallet.SeedString(seed) != zSeedStr {
 		t.Errorf("seed string does not match")
 	}
 }

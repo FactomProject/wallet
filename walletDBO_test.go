@@ -4,11 +4,11 @@ import (
 	"strings"
 	"testing"
 
-	. "github.com/FactomProject/factom/wallet"
+	"github.com/FactomProject/wallet"
 )
 
 func TestWalletDBO(t *testing.T) {
-	db := NewMapDB()
+	db := wallet.NewMapDB()
 	seed, err := db.GetOrCreateDBSeed()
 	if err != nil {
 		t.Errorf("%v", err)
@@ -53,7 +53,7 @@ func TestWalletDBO(t *testing.T) {
 }
 
 func TestDBSeed(t *testing.T) {
-	seed, err := NewRandomSeed()
+	seed, err := wallet.NewRandomSeed()
 	if err != nil {
 		t.Errorf("%v", err)
 	}
