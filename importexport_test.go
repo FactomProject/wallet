@@ -5,13 +5,24 @@
 package wallet_test
 
 import (
+	"fmt"
+	"io/ioutil"
+	"os"
 	"testing"
 
 	"github.com/FactomProject/wallet"
 )
 
 func TestImportWithSpaces(t *testing.T) {
-	w, err := wallet.ImportWalletFromMnemonic("yellow  yellow yellow yellow yellow yellow yellow yellow yellow yellow yellow yellow", "")
+	tmpDir, err := ioutil.TempDir("", "wallet")
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer os.RemoveAll(tmpDir)
+
+	path := fmt.Sprintf("%s%cdb", tmpDir, os.PathSeparator)
+
+	w, err := wallet.ImportWalletFromMnemonic("yellow  yellow yellow yellow yellow yellow yellow yellow yellow yellow yellow yellow", path)
 	if err != nil {
 		t.Error(err)
 		t.FailNow()
