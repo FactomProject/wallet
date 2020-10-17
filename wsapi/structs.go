@@ -88,7 +88,7 @@ type identityKeyRequest struct {
 type importIdentityKeysRequest struct {
 	Keys []struct {
 		Secret string `json:"secret"`
-	} `json:keys`
+	} `json:"keys"`
 }
 
 type activeIdentityKeysRequest struct {
