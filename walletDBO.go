@@ -250,7 +250,6 @@ func (e *DBSeed) NextIdentityKey() (*factom.IdentityKey, error) {
 func NewRandomSeed() (*DBSeed, error) {
 	seed := make([]byte, 16)
 	if n, err := rand.Read(seed); err != nil {
-		panic(err)
 		return nil, err
 	} else if n != 16 {
 		return nil, fmt.Errorf("Wrong number of bytes read: %d", n)
@@ -258,7 +257,6 @@ func NewRandomSeed() (*DBSeed, error) {
 
 	mnemonic, err := bip39.NewMnemonic(seed)
 	if err != nil {
-		panic(err)
 		return nil, err
 	}
 
@@ -274,7 +272,7 @@ func (db *WalletDatabaseOverlay) InsertDBSeed(seed *DBSeed) error {
 	}
 
 	batch := []interfaces.Record{}
-	batch = append(batch, interfaces.Record{seedDBKey, seedDBKey, seed})
+	batch = append(batch, interfaces.Record{Bucket: seedDBKey, Key: seedDBKey, Data: seed})
 
 	return db.DBO.PutInBatch(batch)
 }
@@ -355,7 +353,7 @@ func (db *WalletDatabaseOverlay) InsertECAddress(e *factom.ECAddress) error {
 	}
 
 	batch := []interfaces.Record{}
-	batch = append(batch, interfaces.Record{ecDBPrefix, []byte(e.PubString()), e})
+	batch = append(batch, interfaces.Record{Bucket: ecDBPrefix, Key: []byte(e.PubString()), Data: e})
 
 	return db.DBO.PutInBatch(batch)
 }
@@ -407,7 +405,7 @@ func (db *WalletDatabaseOverlay) InsertFCTAddress(e *factom.FactoidAddress) erro
 	}
 
 	batch := []interfaces.Record{}
-	batch = append(batch, interfaces.Record{fcDBPrefix, []byte(e.String()), e})
+	batch = append(batch, interfaces.Record{Bucket: fcDBPrefix, Key: []byte(e.String()), Data: e})
 
 	return db.DBO.PutInBatch(batch)
 }
@@ -477,8 +475,6 @@ func (db *WalletDatabaseOverlay) RemoveAddress(pubString string) error {
 	} else {
 		return fmt.Errorf("Unknown address type")
 	}
-
-	return nil
 }
 
 type byFName []*factom.FactoidAddress
@@ -544,7 +540,7 @@ func (db *WalletDatabaseOverlay) InsertIdentityKey(e *factom.IdentityKey) error 
 	}
 
 	batch := []interfaces.Record{}
-	batch = append(batch, interfaces.Record{identityDBPrefix, []byte(e.String()), e})
+	batch = append(batch, interfaces.Record{Bucket: identityDBPrefix, Key: []byte(e.String()), Data: e})
 
 	return db.DBO.PutInBatch(batch)
 }
@@ -596,8 +592,6 @@ func (db *WalletDatabaseOverlay) RemoveIdentityKey(pubString string) error {
 	} else {
 		return err
 	}
-
-	return nil
 }
 
 type byKeyName []*factom.IdentityKey

@@ -1,0 +1,64 @@
+version: 2 
+jobs:
+  build:
+    docker: 
+      - image: circleci/golang:1.15
+
+    environment: 
+      TEST_RESULTS: /tmp/test-results
+
+    steps:
+      - checkout
+      - run: mkdir -p $TEST_RESULTS 
+
+      - restore_cache:
+          keys:
+            - go-mod-v4-{{ checksum "go.sum" }}
+
+      - run: go build
+
+      - run:
+          name: Run unit tests
+          command: |
+            PACKAGE_NAMES=$(go list ./... | circleci tests split --split-by=timings --timings-type=classname)
+            gotestsum --junitfile ${TEST_RESULTS}/gotestsum-report.xml -- $PACKAGE_NAMES
+            
+      - save_cache:
+          key: go-mod-v4-{{ checksum "go.sum" }}
+          paths:
+            - "/go/pkg/mod"
+
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: raw-test-output
+
+      - store_test_results:
+          path: /tmp/test-results
+
+  gofmt:
+    docker: 
+      - image: circleci/golang:1.15
+
+    steps:
+      - checkout
+      - run:
+          name: "Enforce Go Formatted Code"
+          command: test $(gofmt -l . | wc -l) -eq 0
+      
+  govet:
+    docker: 
+      - image: circleci/golang:1.15
+
+    steps:
+      - checkout
+      - run:
+          name: "Go vet"
+          command: go vet ./...
+
+workflows:
+  version: 2
+  build-workflow:
+    jobs:
+      - build
+      - gofmt
+      - govet
