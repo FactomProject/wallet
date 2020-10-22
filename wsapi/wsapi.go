@@ -1571,6 +1571,7 @@ func factoidTxToTransaction(t interfaces.ITransaction) (
 
 	if r.TotalInputs <= r.TotalOutputs+r.TotalECOutputs {
 		r.FeesPaid = 0
+		r.FeesRequired = feesRequired(t)
 	} else {
 		r.FeesPaid = r.TotalInputs - (r.TotalOutputs + r.TotalECOutputs)
 	}
