@@ -28,7 +28,7 @@ import (
 	"github.com/FactomProject/factomd/common/interfaces"
 	"github.com/FactomProject/factomd/common/primitives"
 	"github.com/FactomProject/factomd/database/securedb"
-	"github.com/FactomProject/wallet"
+	"github.com/FactomProject/wallet/v2"
 	"github.com/FactomProject/web"
 )
 

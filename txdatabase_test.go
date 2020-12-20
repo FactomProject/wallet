@@ -9,7 +9,7 @@ import (
 
 	"github.com/FactomProject/factomd/common/interfaces"
 	"github.com/FactomProject/factomd/testHelper"
-	"github.com/FactomProject/wallet"
+	"github.com/FactomProject/wallet/v2"
 )
 
 func TestTXDatabaseOverlay(t *testing.T) {

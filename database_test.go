@@ -9,7 +9,7 @@ import (
 	"testing"
 
 	"github.com/FactomProject/factom"
-	"github.com/FactomProject/wallet"
+	"github.com/FactomProject/wallet/v2"
 )
 
 func TestNewWallet(t *testing.T) {

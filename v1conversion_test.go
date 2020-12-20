@@ -8,7 +8,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/FactomProject/wallet"
+	"github.com/FactomProject/wallet/v2"
 )
 
 func TestImportV1Wallet(t *testing.T) {

@@ -7,7 +7,7 @@ package wallet_test
 import (
 	"testing"
 
-	"github.com/FactomProject/wallet"
+	"github.com/FactomProject/wallet/v2"
 )
 
 func TestSeedString(t *testing.T) {
