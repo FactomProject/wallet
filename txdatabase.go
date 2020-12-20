@@ -336,9 +336,9 @@ func (db *TXDatabaseOverlay) Update() (string, error) {
 
 	// If the latest block from the database is not available from the blockchain
 	// then clear the cashe and start from 0.
-	if f, err := getfblockbyheight(start); err != nil {
+	if _, err := getfblockbyheight(start); err != nil {
 		db.DBO.Clear(databaseOverlay.FACTOIDBLOCK)
-		return f.GetKeyMR().String(), err
+		return "", err
 	}
 
 	db.DBO.StartMultiBatch()
