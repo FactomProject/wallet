@@ -5,6 +5,7 @@
 package wallet
 
 import (
+	"encoding/hex"
 	"fmt"
 	"os"
 
@@ -418,7 +419,11 @@ func getfblockbyheight(height uint32) (interfaces.IFBlock, error) {
 	if err != nil {
 		return nil, err
 	}
-	return factoid.UnmarshalFBlock([]byte(raw.RawData))
+	bytes, err := hex.DecodeString(raw.RawData)
+	if err != nil {
+		return nil, err
+	}
+	return factoid.UnmarshalFBlock(bytes)
 }
 
 func getdblockbyheight(height uint32) (interfaces.IDirectoryBlock, error) {
@@ -426,5 +431,9 @@ func getdblockbyheight(height uint32) (interfaces.IDirectoryBlock, error) {
 	if err != nil {
 		return nil, err
 	}
-	return directoryBlock.UnmarshalDBlock([]byte(raw.RawData))
+	bytes, err := hex.DecodeString(raw.RawData)
+	if err != nil {
+		return nil, err
+	}
+	return directoryBlock.UnmarshalDBlock(bytes)
 }
